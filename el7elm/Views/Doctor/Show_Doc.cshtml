@@ -1,0 +1,67 @@
+﻿@model IEnumerable<el7elm.Models.doctor>
+
+@{
+    ViewBag.Title = "Show_Doc";
+}
+
+<h2>Show Doctors</h2>
+
+<p>
+    @Html.ActionLink("Add New Doctor", "Add_Doc")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Doctor Name
+        </th>
+        <th>
+           Salary
+        </th>
+        <th>
+            Gender
+        </th>
+        <th>
+            BirthDate
+        </th>
+        
+        <th>
+            Email
+        </th>
+        
+        <th>
+            Major
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.birthdate)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.email)
+        </td>
+        
+        <td>
+            @Html.DisplayFor(modelItem => item.major_job)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit_Doc", new { id=item.doc_id }) |
+            @Html.ActionLink("Details", "Details_Doc", new { id=item.doc_id }) |
+           
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HospitalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="admin">
+    <Key>
+      <PropertyRef Name="admin_id" />
+    </Key>
+    <Property Name="admin_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar(max)" Nullable="false" />
+    <Property Name="password" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="appointments">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" Nullable="false" />
+    <Property Name="doc_id" Type="int" Nullable="false" />
+    <Property Name="app-date" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="avail_appointments">
+    <Key>
+      <PropertyRef Name="app_id" />
+    </Key>
+    <Property Name="app_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="doc_id" Type="int" Nullable="false" />
+    <Property Name="start_avail_date" Type="date" Nullable="false" />
+    <Property Name="end_avail_date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="doctor">
+    <Key>
+      <PropertyRef Name="doc_id" />
+    </Key>
+    <Property Name="doc_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="salary" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="gender" Type="nchar" MaxLength="10" Nullable="false" />
+    <Property Name="birthdate" Type="date" Nullable="false" />
+    <Property Name="dept_id" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar(max)" Nullable="false" />
+    <Property Name="password" Type="varchar(max)" Nullable="false" />
+    <Property Name="major_job" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="patient">
+    <Key>
+      <PropertyRef Name="patient_id" />
+    </Key>
+    <Property Name="patient_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="birthdate" Type="date" Nullable="false" />
+    <Property Name="gender" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="address" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar(max)" Nullable="false" />
+    <Property Name="phone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="password" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="payment">
+    <Key>
+      <PropertyRef Name="patment_id" />
+    </Key>
+    <Property Name="patment_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" Nullable="false" />
+    <Property Name="patient_name" Type="varchar(max)" Nullable="false" />
+    <Property Name="amount_to_pay" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="payment_details" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="prescription">
+    <Key>
+      <PropertyRef Name="pre_id" />
+    </Key>
+    <Property Name="pre_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="patient_id" Type="int" Nullable="false" />
+    <Property Name="doc_id" Type="int" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="HospitalModelStoreContainer">
+    <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="appointments" EntityType="Self.appointments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="avail_appointments" EntityType="Self.avail_appointments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="doctor" EntityType="Self.doctor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="patient" EntityType="Self.patient" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="prescription" EntityType="Self.prescription" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,39 @@
+﻿@model IEnumerable<el7elm.Models.appointment>
+
+@{
+    ViewBag.Title = "Show_App";
+}
+
+<h2>My Appointments</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Patient ID
+        </th>
+        <th>
+            Doctor ID
+        </th>
+        <th>
+            Appointment Date
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.patient_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.doc_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.app_date)
+        </td>
+      
+    </tr>
+}
+
+</table>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<el7elm.Models.payment>
+
+@{
+    ViewBag.Title = "Payment";
+}
+
+<h2>Payments</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Generate_bill")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Patient ID
+        </th>
+        <th>
+            Patient Name
+        </th>
+        <th>
+            Amount To Pay
+        </th>
+        <th>
+            Bill Details
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.patient_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.patient_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.amount_to_pay)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.payment_details)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Pay_Edit", new { id=item.patment_id }) |
+            
+            
+        </td>
+    </tr>
+}
+
+</table>

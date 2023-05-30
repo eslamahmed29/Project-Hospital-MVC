@@ -1,0 +1,70 @@
+﻿@model el7elm.Models.doctor
+
+@{
+    ViewBag.Title = "Details_Doc";
+}
+
+<h2>Details of Doctor</h2>
+
+<div>
+    <h4>doctor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.birthdate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.birthdate)
+        </dd>
+
+        
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.major_job)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.major_job)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit_Doc", new { id = Model.doc_id }) |
+    @Html.ActionLink("Back to List", "Show_Doc")
+</p>

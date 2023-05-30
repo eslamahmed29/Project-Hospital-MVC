@@ -1,0 +1,36 @@
+﻿@model el7elm.Models.admin
+
+@{
+    ViewBag.Title = "Admin_Details";
+}
+
+<h2>Admin Details</h2>
+
+<div>
+    <h4>admin</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email)
+        </dd>
+
+        
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Admin_Edit", new { id = Model.admin_id }) |
+    @Html.ActionLink("Back to List", "Show")
+</p>

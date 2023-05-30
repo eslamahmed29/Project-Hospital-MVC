@@ -1,0 +1,60 @@
+﻿@model List<el7elm.Models.relation_model>
+
+<table class="table">
+    <tr>
+        <th>
+            Patient ID
+        </th>
+        <th>
+            Doctor ID
+        </th>
+        <th>
+            Patient Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Patient Address
+        </th>
+        <th>
+            Patient Gender
+        </th>
+        <th>
+            Patient Birthdate
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.doc_id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_gender)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.patient_birthdate)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit_Pre", new { id = item.pre_id }) |
+               
+                
+            </td>
+        </tr>
+    }
+</table>

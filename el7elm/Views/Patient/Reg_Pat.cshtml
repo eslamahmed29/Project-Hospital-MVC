@@ -1,0 +1,175 @@
+﻿@model el7elm.Models.patient
+
+@{
+    ViewBag.Title = "Reg_Pat";
+}
+
+<h2>Register</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>patient</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.birthdate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.birthdate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.birthdate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.gender, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.gender, new List<SelectListItem>
+                 {
+                     new SelectListItem { Text = "male", Value = "male" },
+                     new SelectListItem { Text = "female", Value = "female" }
+                 }, "Select Gender", new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.gender, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", type = "email" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.phone, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" });
+
+            <div class="col-md-10">
+                @Html.PasswordFor(model => model.password, new { @class = "form-control", id = "Password" })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                <div id="passwordStrength" style="display: none;">
+                    <span class="strength-indicator indicator-red">
+                        <i class="fas fa-times"></i> Uppercase
+                    </span><br />
+                    <span class="strength-indicator indicator-red">
+                        <i class="fas fa-times"></i> Lowercase
+                    </span><br />
+                    <span class="strength-indicator indicator-red">
+                        <i class="fas fa-times"></i> Number
+                    </span><br />
+                    <span class="strength-indicator indicator-red">
+                        <i class="fas fa-times"></i> Special Character
+                    </span><br />
+                    <span class="strength-indicator indicator-red">
+                        <i class="fas fa-times"></i> Minimum 8 characters
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Register" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+    <style>
+        .indicator-red {
+            color: red;
+        }
+
+        .indicator-green {
+            color: green;
+        }
+    </style>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            function checkPasswordStrength(password) {
+                var passwordStrengthElement = $('#passwordStrength');
+                var strengthIndicators = passwordStrengthElement.find('.strength-indicator');
+
+                // Reset the strength indicators
+                strengthIndicators.removeClass('indicator-green').addClass('indicator-red');
+                strengthIndicators.find('i').removeClass('fa-check').addClass('fa-times');
+
+
+                // Define the regular expressions for password strength
+                var regexes = [
+                    /[A-Z]/,    // Uppercase letters
+                    /[a-z]/,    // Lowercase letters
+                    /\d/,       // Numbers
+                    /[!@@#$%^&*]/ // Special characters
+                ];
+
+                // Check if the password meets each strength requirement
+                var strength = 0;
+                for (var i = 0; i < regexes.length; i++) {
+                    if (regexes[i].test(password)) {
+                        strengthIndicators.eq(i).removeClass('indicator-red').addClass('indicator-green');
+                        strengthIndicators.eq(i).find('i').removeClass('fa-times').addClass('fa-check');
+                        strength++;
+                    }
+                }
+
+                // Check the password length requirement
+                if (password.length >= 8) {
+                    strengthIndicators.eq(4).removeClass('indicator-red').addClass('indicator-green');
+                    strengthIndicators.eq(4).find('i').removeClass('fa-times').addClass('fa-check');
+                    strength++;
+                }
+
+                // Show password strength element if at least one requirement is met
+                if (strength > 0) {
+                    passwordStrengthElement.show();
+                } else {
+                    passwordStrengthElement.hide();
+                }
+            }
+
+            $('#Password').on('keyup', function () {
+                var password = $(this).val();
+                checkPasswordStrength(password);
+            });
+        });
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('.datepicker').datepicker({
+                dateFormat: 'yy-mm-dd' // Change the date format as per your requirement
+            });
+        });
+    </script>
+}
+}
+
+
