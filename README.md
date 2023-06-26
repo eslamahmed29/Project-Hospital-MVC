@@ -1,5 +1,4 @@
-# Project-Hospital-MVC
-A Web Application with Asp.NET Framework about Hospital Management System
+
 # Hospital Management System
 
 The Hospital Management System is a sophisticated software application designed to streamline and automate the various tasks involved in managing a hospital. This system is built using ASP.NET MVC and provides an efficient solution for hospitals to manage patient records, appointments, and financial transactions.
